@@ -216,29 +216,15 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <div class="post-preview-container" style="min-height: <%- config.per_page * 72 %>px">
-    <% page.posts.each(function(post){="" %="">
-    <div class="post-preview">
-        <div class="post-time"><%= post.date.format(config.date_format)="" %=""></%=></div>
-        <div class="post-info">
-            <a href="<%- config.root %><%- post.path %>">
-                <h3>
-                    <%- post.title="" ||="" "untitled"="" %="">
-                </%-></h3>
-            </a>
-            <p>
-                <% if="" (post.tags.length){="" console.log(post.tags)="" %="">
-                <span>/</span>
-                <% post.tags.foreach(function(tag){="" %="">
-                <a class="tag" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name="" %=""></%=></a>
-                <span>/</span>
-                <% })="" %="">
-                <% }="" %="">
-            </%></%></%></%></p>
-        </div>
-    </div>
-    <% });="" %="">
-</%></%></div>
+  <section id="posts" class="posts-expand">
+    
+      test2
+    
+      test
+    
+      Hello World
+    
+  </section>
 
   
 
