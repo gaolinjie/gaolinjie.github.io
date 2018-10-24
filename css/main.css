@@ -1294,7 +1294,7 @@ pre .javascript .function {
   margin-top: 0;
   margin-bottom: 5px;
   color: #101010;
-  font-size: 18px;
+  font-size: 1.4em;
   font-weight: 300;
   transition: color 0.4s;
 }
@@ -1499,6 +1499,12 @@ pre .javascript .function {
 .page-home .post-type-quote .post-tags,
 .page-post-detail .post-type-quote .post-tags {
   display: none;
+}
+.post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
 }
 .posts-expand .post-title {
   text-align: center;
@@ -1870,7 +1876,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #96df9a;
+  background: #9eab77;
 }
 .links-of-blogroll {
   font-size: 13px;
