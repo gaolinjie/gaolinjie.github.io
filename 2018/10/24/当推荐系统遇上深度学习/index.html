@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="深度学习 FM DIN,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="OverviewUnder the success of FM, there are many neural network models based on it, most of which focus on:   adding the capability of modeling high-order feature interactions implicitly or explicitly">
+<meta name="keywords" content="深度学习 FM DIN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当推荐系统遇上深度学习">
+<meta property="og:url" content="http://yoursite.com/2018/10/24/当推荐系统遇上深度学习/index.html">
+<meta property="og:site_name" content="gaolinjie">
+<meta property="og:description" content="OverviewUnder the success of FM, there are many neural network models based on it, most of which focus on:   adding the capability of modeling high-order feature interactions implicitly or explicitly">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/FNN.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/PNN.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/Wide&Deep.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/DeepFM_1.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/NFM.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/AFM.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/DCN.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/DIN_Arch.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/DIN_AttentionNet.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/xDeepFM_CIN.png">
+<meta property="og:image" content="https://deepctr.readthedocs.io/en/latest/_images/xDeepFM_Arch.png">
+<meta property="og:updated_time" content="2018-10-24T02:24:14.682Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当推荐系统遇上深度学习">
+<meta name="twitter:description" content="OverviewUnder the success of FM, there are many neural network models based on it, most of which focus on:   adding the capability of modeling high-order feature interactions implicitly or explicitly">
+<meta name="twitter:image" content="https://deepctr.readthedocs.io/en/latest/_images/FNN.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/24/当推荐系统遇上深度学习/">
+
+
+
+
+
+  <title>当推荐系统遇上深度学习 | gaolinjie</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">gaolinjie</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/24/当推荐系统遇上深度学习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gaolinjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gaolinjie">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">当推荐系统遇上深度学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-24T10:19:30+08:00">
+                2018-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/24/当推荐系统遇上深度学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/24/当推荐系统遇上深度学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id5" target="_blank" rel="noopener">Overview</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#overview" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>Under the success of FM, there are many neural network models based on it, most of which focus on:</p>
+<blockquote>
+<ul>
+<li>adding the capability of modeling high-order feature interactions implicitly or explicitly</li>
+<li>maintaining the ability of modeling low-order feature interactions implicitly or explicitly</li>
+</ul>
+</blockquote>
+<p>It is general to apply Deep Neural Network (DNN) whose input should be designed to capature the high-order feature interactions implicitly and selectively.</p>
+<h2 id="FNN-Factorization-supported-Neural-Network"><a href="#FNN-Factorization-supported-Neural-Network" class="headerlink" title="FNN (Factorization-supported Neural Network)"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id6" target="_blank" rel="noopener">FNN (Factorization-supported Neural Network)</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#fnn-factorization-supported-neural-network" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>FNN embedding sparse feature into dense latent vector and apply DNN with concatenation of latent vectors as input to implicitly and simultaneously modeling low-order and high-order feature interactions.</p>
+<p>Its network structure is shown below.</p>
+<p><a href="https://deepctr.readthedocs.io/en/latest/_images/FNN.png" target="_blank" rel="noopener"><img src="https://deepctr.readthedocs.io/en/latest/_images/FNN.png" alt="../_images/FNN.png"></a></p>
+<p>You can get the editable figure <a href="https://www.processon.com/view/link/5b5824c2e4b0edb750e9e1d5" target="_blank" rel="noopener">here</a>.</p>
+<p>[<strong>Springer‘2016</strong>]Zhang, Weinan, Tianming Du, and Jun Wang. <a href="https://link.springer.com/chapter/10.1007/978-3-319-30671-1_4" target="_blank" rel="noopener">Deep learning over multi-field categorical data</a>, European conference on information retrieval. Springer, Cham, 2016.</p>
+<h2 id="PNN-Product-based-Neural-Network"><a href="#PNN-Product-based-Neural-Network" class="headerlink" title="PNN (Product-based Neural Network)"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id7" target="_blank" rel="noopener">PNN (Product-based Neural Network)</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#pnn-product-based-neural-network" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>PNN embedding sparse feature into dense latent vector and apply DNN with concatenation of latent vectors and inner or outer product of latent vector as input to explicitly modeling low-order feature interactions and implicitly modeling high-order feature interactions.</p>
+<p>Its network structure is shown below.</p>
+<p><a href="https://deepctr.readthedocs.io/en/latest/_images/PNN.png" target="_blank" rel="noopener"><img src="https://deepctr.readthedocs.io/en/latest/_images/PNN.png" alt="../_images/PNN.png"></a></p>
+<p>You can get the editable figure <a href="https://www.processon.com/view/link/5b582617e4b053a09c15375d" target="_blank" rel="noopener">here</a>.</p>
+<p>[<strong>IEEE‘2016</strong>]Qu, Yanru, et al. <a href="https://ieeexplore.ieee.org/abstract/document/7837964/" target="_blank" rel="noopener">Product-based neural networks for user response prediction</a>, Data Mining (ICDM), 2016 IEEE 16th International Conference on. IEEE, 2016.</p>
+<h2 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide &amp; Deep"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id8" target="_blank" rel="noopener">Wide &amp; Deep</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#wide-deep" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>The deep part of Wide &amp; Deep is the same as FNN which embedding sparse feature into dense latent vector and apply DNN with concatenation of latent vectors as input. While the wide part of Wide &amp; Deep aims to concatenate handcrafted feature with deep part’s output implicit high-order feature.</p>
+<p>Its network structure is shown below.</p>
+<p><a href="https://deepctr.readthedocs.io/en/latest/_images/Wide&amp;Deep.png" target="_blank" rel="noopener"><img src="https://deepctr.readthedocs.io/en/latest/_images/Wide&amp;Deep.png" alt="../_images/Wide&amp;Deep.png"></a></p>
+<p>You can get the editable figure <a href="https://www.processon.com/view/link/5b583084e4b053a09c156380" target="_blank" rel="noopener">here</a>.</p>
+<p>[<strong>ACM‘2016</strong>]Cheng, Heng-Tze, et al. <a href="https://dl.acm.org/citation.cfm?id=2988454" target="_blank" rel="noopener">Wide &amp; deep learning for recommender systems</a>, Proceedings of the 1st Workshop on Deep Learning for Recommender Systems. ACM, 2016.</p>
+<h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id9" target="_blank" rel="noopener">DeepFM</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#deepfm" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>The deep part of DeepFM is the same as FNN which embedding sparse feature into dense latent vector and apply DNN with concatenation of latent vectors as input. Simultaneously, DeepFM integrates FM with DNN which makes it model the low-order feature interactions explicitly and high-order feature interactions implicitly.</p>
+<p>Its network structure is shown below.</p>
+<p><a href="https://deepctr.readthedocs.io/en/latest/_images/DeepFM_1.png" target="_blank" rel="noopener"><img src="https://deepctr.readthedocs.io/en/latest/_images/DeepFM_1.png" alt="../_images/DeepFM_1.png"></a></p>
+<p>You can get the editable figure <a href="https://www.processon.com/view/link/59c8dbfce4b0ef561374dea6" target="_blank" rel="noopener">here</a>.</p>
+<p>[<strong>arXiv‘2017</strong>]Guo, Huifeng, et al. <a href="https://arxiv.org/abs/1703.04247" target="_blank" rel="noopener">Deepfm: a factorization-machine based neural network for ctr prediction</a>, <em>arXiv preprint arXiv:1703.04247</em> (2017).</p>
+<h2 id="NFM-Neural-FM"><a href="#NFM-Neural-FM" class="headerlink" title="NFM (Neural FM)"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id10" target="_blank" rel="noopener">NFM (Neural FM)</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#nfm-neural-fm" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>NFM embedding sparse feature into dense latent vector and apply DNN with element-wise addition of all element-wise product of each two latent vectors as input to explicitly modeling low-order feature interactions and implicitly modeling high-order feature interactions.</p>
+<p>The difference between PNN’s inner product layer and NFM is the addition axis when pooling matrix VV into DNN’s input vector, each of whose column is an element-wise product of two latent vectors.</p>
+<p>Its network structure is shown below.</p>
+<p><a href="https://deepctr.readthedocs.io/en/latest/_images/NFM.png" target="_blank" rel="noopener"><img src="https://deepctr.readthedocs.io/en/latest/_images/NFM.png" alt="../_images/NFM.png"></a></p>
+<p>You can get the editable figure <a href="https://www.processon.com/view/link/5b57f4e4e4b025cf4925e792" target="_blank" rel="noopener">here</a>.</p>
+<p>[<strong>ACM‘2017</strong>]He, Xiangnan, and Tat-Seng Chua. <a href="https://dl.acm.org/citation.cfm?id=3080777" target="_blank" rel="noopener">Neural factorization machines for sparse predictive analytics</a>, Proceedings of the 40th International ACM SIGIR conference on Research and Development in Information Retrieval. ACM, 2017.</p>
+<h2 id="AFM-Attentional-FM"><a href="#AFM-Attentional-FM" class="headerlink" title="AFM (Attentional FM)"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id11" target="_blank" rel="noopener">AFM (Attentional FM)</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#afm-attentional-fm" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>FM models all factorized feature interactions with the same weight. AFM proposes to differentiate the importance of feature interactions by assigning different weights to feature interaction terms. To do so, AFM first extends FM to the neural netowrk architecture and then introduces the attention mechanism to the sum pooling layer.</p>
+<p><a href="https://deepctr.readthedocs.io/en/latest/_images/AFM.png" target="_blank" rel="noopener"><img src="https://deepctr.readthedocs.io/en/latest/_images/AFM.png" alt="../_images/AFM.png"></a></p>
+<p>The Attention Net is a simple Multi-Layer Perception (MLP) network with an element-wise product of two embedding vectors as input and an attention score as output.</p>
+<p>Attention formula:</p>
+<p>a′ijaij=hT∗ReLU(W(vi⊙vj)xixj+b)=softmax(a′ij)aij′=hT∗ReLU(W(vi⊙vj)xixj+b)aij=softmax(aij′)</p>
+<p>Prediction function:</p>
+<p>yAFM=w0+∑i=1nwixi+pT∑i=1n∑j=i+1naij(vi⊙vj)xixjyAFM=w0+∑i=1nwixi+pT∑i=1n∑j=i+1naij(vi⊙vj)xixj</p>
+<p>yAFMyAFM can exactly recover FM when setting pp to 11 and aijaij to 1.</p>
+<ul>
+<li>Jun Xiao, Hao Ye, Xiangnan He, Hanwang Zhang, Fei Wu, Tat-Seng Chua. <a href="http://www.ijcai.org/proceedings/2017/0435.pdf" target="_blank" rel="noopener">Attentional Factorization Machines: Learning the Weight of Feature Interactions via Attention Networks</a>, <strong>IJCAI</strong>, 2017.</li>
+</ul>
+<h2 id="DCN-Deep-amp-Cross-Network"><a href="#DCN-Deep-amp-Cross-Network" class="headerlink" title="DCN (Deep &amp; Cross Network)"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id12" target="_blank" rel="noopener">DCN (Deep &amp; Cross Network)</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#dcn-deep-cross-network" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>The deep part of DCN is the same as FNN which embedding sparse feature into dense latent vector and apply DNN with concatenation of latent vectors as input. Simultaneously, DCN applys Cross Net to explicitly model both low-order feature interactions and high-order feature interactions. The cross operation performs with formula:</p>
+<blockquote>
+<p>xl+1=x0∗xTl∗wl+bl+xlxl+1=x0∗xlT∗wl+bl+xl</p>
+</blockquote>
+<p>Additionally, the term x0∗xTlx0∗xlT in Cross Net explicitly generates interactions but different from the term ΣiΣj&lt;vi,vj&gt;∗xi∗xjΣiΣj&lt;vi,vj&gt;∗xi∗xj in FM. Specifically, the term x0∗(xl)Tx0∗(xl)T generates element-level interaction while the term ΣiΣj&lt;vi,vj&gt;∗xi∗xjΣiΣj&lt;vi,vj&gt;∗xi∗xj is vector-level interaction.</p>
+<p>Its network structure is shown below.</p>
+<p><a href="https://deepctr.readthedocs.io/en/latest/_images/DCN.png" target="_blank" rel="noopener"><img src="https://deepctr.readthedocs.io/en/latest/_images/DCN.png" alt="../_images/DCN.png"></a></p>
+<p>[<strong>ADKDD‘2017</strong>]Wang, Ruoxi, et al. <a href="https://dl.acm.org/citation.cfm?id=3124754" target="_blank" rel="noopener">Deep &amp; cross network for ad click predictions</a>, <em>Proceedings of the ADKDD‘17</em>. ACM, 2017.</p>
+<h2 id="DIN-Deep-Interest-Network"><a href="#DIN-Deep-Interest-Network" class="headerlink" title="DIN (Deep Interest Network)"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id13" target="_blank" rel="noopener">DIN (Deep Interest Network)</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#din-deep-interest-network" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>DIN is just a simple DNN taking concatenation of latent vectors as input to implicitly and simultaneously modeling low-order and high-order feature interactions. The success of DIN is that it focus on the problem of embedding sequence feature — user histories in which there is full of user’s interest information, and apply attention instead of Long Short Term Memory (LSTM) to better utilise user’s interest information according to different context.</p>
+<p>For example, a woman bought cleanser many times and cloth for relatively less time. Then the sequence embedding vector learned with LSTM is unable to provide rich information when this woman is currently searching item about cloth.</p>
+<p>The architecture of DIN is shown below.</p>
+<p><img src="https://deepctr.readthedocs.io/en/latest/_images/DIN_Arch.png" alt="../_images/DIN_Arch.png"></p>
+<p>The attention net is a simple Multi-Layer Perception (MLP) shown below, which takes concatenation of user’s historical good, candidate good and their element-wise product as input.</p>
+<p><a href="https://deepctr.readthedocs.io/en/latest/_images/DIN_AttentionNet.png" target="_blank" rel="noopener"><img src="https://deepctr.readthedocs.io/en/latest/_images/DIN_AttentionNet.png" alt="../_images/DIN_AttentionNet.png"></a></p>
+<p>[<strong>arXiv‘2017</strong>]Zhou, Guorui, et al. <a href="https://arxiv.org/abs/1706.06978" target="_blank" rel="noopener">Deep interest network for click-through rate prediction</a>, arXiv preprint arXiv:1706.06978 (2017).</p>
+<h2 id="xDeepFM-eXtreme-DeepFM"><a href="#xDeepFM-eXtreme-DeepFM" class="headerlink" title="xDeepFM (eXtreme DeepFM)"></a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#id14" target="_blank" rel="noopener">xDeepFM (eXtreme DeepFM)</a><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html#xdeepfm-extreme-deepfm" title="Permalink to this headline" target="_blank" rel="noopener"></a></h2><p>As mentioned in DCN, it can expcilitly model both low-order and high-order element-level feature interactions. Inspired by this, xDeepFM is trying to model both low-order and high-order feature interactions under vector-level.</p>
+<p>In order to implement such so called Compressed Interaction Network (CIN), it concatenates the latent vector into a matrix named feature map instead of a vector and performs outer product between two matrixs, which is shown in part a of figure below.</p>
+<p>Shown in part b of figure below, then using a dense layer <strong>shared</strong> in dimention DD to generate one of HkHk interaction vectors and those HkHk interaction vectors compose the feature map. All the feature maps are finally pooling along dimention DD into input vectors of output layer, which is shown in part c.</p>
+<p><img src="https://deepctr.readthedocs.io/en/latest/_images/xDeepFM_CIN.png" alt="../_images/xDeepFM_CIN.png"></p>
+<p>In addition, integration of Wide &amp; Deep (i.e. LR and DNN) and CIN comes into the final xDeepFM shown below.</p>
+<p><a href="https://deepctr.readthedocs.io/en/latest/_images/xDeepFM_Arch.png" target="_blank" rel="noopener"><img src="https://deepctr.readthedocs.io/en/latest/_images/xDeepFM_Arch.png" alt="../_images/xDeepFM_Arch.png"></a></p>
+<p>[<strong>arXiv‘2018</strong>]Lian, Jianxun, et al. <a href="https://arxiv.org/abs/1803.05170" target="_blank" rel="noopener">xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems</a>, arXiv preprint arXiv:1803.05170 (2018).</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习-FM-DIN/" rel="tag"># 深度学习 FM DIN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/24/推荐系统工程师之路/" rel="next" title="推荐系统工程师之路">
+                <i class="fa fa-chevron-left"></i> 推荐系统工程师之路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/24/DeepFM炼丹记/" rel="prev" title="DeepFM炼丹记">
+                DeepFM炼丹记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">gaolinjie</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FNN-Factorization-supported-Neural-Network"><span class="nav-number">2.</span> <span class="nav-text">FNN (Factorization-supported Neural Network)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PNN-Product-based-Neural-Network"><span class="nav-number">3.</span> <span class="nav-text">PNN (Product-based Neural Network)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep"><span class="nav-number">4.</span> <span class="nav-text">Wide &amp; Deep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepFM"><span class="nav-number">5.</span> <span class="nav-text">DeepFM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFM-Neural-FM"><span class="nav-number">6.</span> <span class="nav-text">NFM (Neural FM)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AFM-Attentional-FM"><span class="nav-number">7.</span> <span class="nav-text">AFM (Attentional FM)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DCN-Deep-amp-Cross-Network"><span class="nav-number">8.</span> <span class="nav-text">DCN (Deep &amp; Cross Network)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DIN-Deep-Interest-Network"><span class="nav-number">9.</span> <span class="nav-text">DIN (Deep Interest Network)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xDeepFM-eXtreme-DeepFM"><span class="nav-number">10.</span> <span class="nav-text">xDeepFM (eXtreme DeepFM)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gaolinjie</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://gaolinjie.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/10/24/当推荐系统遇上深度学习/';
+          this.page.identifier = '2018/10/24/当推荐系统遇上深度学习/';
+          this.page.title = '当推荐系统遇上深度学习';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://gaolinjie.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

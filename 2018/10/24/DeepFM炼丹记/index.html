@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Tensorflow DeepFM,">
 
 
 
@@ -81,17 +81,25 @@
 
 
 
-<meta name="description" content="x_{new}  =  \frac{x}{max(x)}  x_{new}  =  \frac{x- x_{min} }{ x_{max}-x_{min}  }  x_{new}  =   \frac{x- μ }{ δ }    s_{N} ^{2}  =  \frac{1}{N}  {\displaystyle \sum_{i=1}^{N}{ ( x_{i} -  \bar{x}  )^{2}">
+<meta name="description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
+<meta name="keywords" content="Tensorflow DeepFM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test2">
-<meta property="og:url" content="http://yoursite.com/2018/10/23/test2/index.html">
+<meta property="og:title" content="DeepFM炼丹记">
+<meta property="og:url" content="http://yoursite.com/2018/10/24/DeepFM炼丹记/index.html">
 <meta property="og:site_name" content="gaolinjie">
-<meta property="og:description" content="x_{new}  =  \frac{x}{max(x)}  x_{new}  =  \frac{x- x_{min} }{ x_{max}-x_{min}  }  x_{new}  =   \frac{x- μ }{ δ }    s_{N} ^{2}  =  \frac{1}{N}  {\displaystyle \sum_{i=1}^{N}{ ( x_{i} -  \bar{x}  )^{2}">
+<meta property="og:description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-23T15:41:51.493Z">
+<meta property="og:image" content="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png">
+<meta property="og:image" content="https://i.typcdn.com/fabwrite/PP/YJtwPEaq2NcXSbWf8Vyw.png">
+<meta property="og:image" content="https://i.typcdn.com/fabwrite/ln/2UC_grQ0WrVchtYeyo5Q.png">
+<meta property="og:image" content="https://i.typcdn.com/fabwrite/v3/uwbnfPoZvF-mpeLmLJ5w.png">
+<meta property="og:image" content="https://i.typcdn.com/fabwrite/nb/xCU3tdi6NqX_npvMCKmQ.png">
+<meta property="og:image" content="https://i.typcdn.com/fabwrite/6F/W0qE0eVQBGpxn9EUdxPA.png">
+<meta property="og:updated_time" content="2018-10-24T02:22:52.644Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test2">
-<meta name="twitter:description" content="x_{new}  =  \frac{x}{max(x)}  x_{new}  =  \frac{x- x_{min} }{ x_{max}-x_{min}  }  x_{new}  =   \frac{x- μ }{ δ }    s_{N} ^{2}  =  \frac{1}{N}  {\displaystyle \sum_{i=1}^{N}{ ( x_{i} -  \bar{x}  )^{2}">
+<meta name="twitter:title" content="DeepFM炼丹记">
+<meta name="twitter:description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
+<meta name="twitter:image" content="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png">
 
 
 
@@ -121,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/23/test2/">
+  <link rel="canonical" href="http://yoursite.com/2018/10/24/DeepFM炼丹记/">
 
 
 
 
 
-  <title>test2 | gaolinjie</title>
+  <title>DeepFM炼丹记 | gaolinjie</title>
   
 
 
@@ -234,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/test2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/24/DeepFM炼丹记/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="gaolinjie">
@@ -251,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test2</h1>
+          <h1 class="post-title" itemprop="name headline">DeepFM炼丹记</h1>
         
 
         <div class="post-meta">
@@ -263,8 +271,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-23T23:37:55+08:00">
-                2018-10-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-24T10:22:33+08:00">
+                2018-10-24
               </time>
             
 
@@ -282,8 +290,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/23/test2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/23/test2/" itemprop="commentCount"></span>
+                <a href="/2018/10/24/DeepFM炼丹记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/24/DeepFM炼丹记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -311,36 +319,31 @@
       
 
       
-        <p>x_{new}  =  \frac{x}{max(x)}<br>  x_{new}  =  \frac{x- x_{min} }{ x_{max}-x_{min}  }<br>  x_{new}  =   \frac{x- μ }{ δ } </p>
-<p>  s_{N} ^{2}  =  \frac{1}{N}  {\displaystyle \sum_{i=1}^{N}{ ( x_{i} -  \bar{x}  )^{2} } } </p>
-<p> E(f;D)= E_{D} [ (f(x;D)- y_{D} )^{2} ]= E_{D} [(f(x;D)- \bar{f}(x) )^{2} ]+ ( \bar{f}(x)-y )^{2} + E_{D} [ (y- y_{D} )^{2} ]</p>
-<p>\theta^{(j)}\;用户\;j\;的参数向量<br>x^{(i)}\;物品\;i\;的特征向量<br>用户\;j\;对物品\;i\;的预测评分</p>
-<p>\min_{\theta^{(1)},…,\theta^{(n_{u})}}{\frac{1}{2}\sum_{j=1}^{n_{u}}{\sum_{i:r(i,j)=1}^{}{((\theta^{(j)})^{T}-y^{(i,j)})^{2}}}+\frac{\lambda}{2}\sum_{j=1}^{n_{u}}{\sum_{k=1}^{n}{(\theta_{k}^{(j)})^{2}}}}</p>
-<p>\theta_{k}^{(j)}:=\theta_{k}^{(j)}-\alpha(\sum_{i:r(i,j)=1}^{}{((\theta^{(j)})^{T}x^{(i)}-y^{(i,j)})x_{k}^{i}}+\lambda \theta_{k}^{(j)})</p>
-<p>P_{u,i} = \frac{ {\displaystyle \sum_{j}^{n}{( sim_{u,j} \ast  R_{j,i}  )} } }{ {\displaystyle \sum_{j}^{n}{ sim_{u,j} } } } </p>
-<p>sim(i,j)= \frac{ {\displaystyle \sum_{k=1}^{n}{ R_{ik}  \ast  R_{jk} } } }{ \sqrt{ {\displaystyle \sum_{k=1}^{n}{  R_{ik} ^{2} } } }  \sqrt{ {\displaystyle \sum_{k=1}^{n}{ R_{jk} ^{2} } } } } </p>
-<p>  \tilde{R} <em>{ui} = \frac{ {\displaystyle \sum</em>{j=1}^{m}{sim(i,j)} }  \ast  R_{uj} }{ {\displaystyle \sum_{j=1}^{m}{sim(i,j)} } } </p>
-<p>y=  ω <em>{0} + {\displaystyle \sum</em>{i=1}^{n}{  ω <em>{i}  x</em>{i} } + {\displaystyle \sum_{i=1}^{n-1}{ {\displaystyle \sum_{j=i+1}^{n}{  ω <em>{ij}  x</em>{i}  x_{j} } } } }  } </p>
-<p>\begin{equation}\begin{split} \sum_{i=1}^{n-1} \sum_{j=i+1}^n \left \langle v_i,v_j \right \rangle x_i x_j &amp;= \frac{1}{2} \left (\sum_{i=1}^n \sum_{j=1}^n \left \langle v_i,v_j \right \rangle x_i x_j -  \sum_{i=1}^n \left \langle v_i,v_i \right \rangle x_i x_i \right ) \ &amp;= \frac{1}{2} \left ( \sum_{i=1}^n \sum_{j=1}^n \sum_{f=1}^k v_{i,f} v_{j,f} x_i x_j - \sum_{i=1}^n \sum_{f=1}^k v_{i,f} v_{i,f} x_i x_i  \right ) \ &amp;= \frac{1}{2} \sum_{f=1}^k \left[ \left ( \sum_{i=1}^n v_{i,f}x_i \right ) \left( \sum_{j=1}^n v_{j,f}x_j \right ) -\sum_{i=1}^n v_{i,f}^2 x_i^2 \right ] \ &amp;= \frac{1}{2} \sum_{f=1}^k \left[ \left ( \sum_{i=1}^n v_{i,f}x_i \right )^2 -\sum_{i=1}^n v_{i,f}^2 x_i^2 \right ] \end{split}\end{equation}</p>
-<p>x_{1}x_{1} \quad x_{1}x_{2}\quad x_{1}x_{3}\quad x_{1}x_{4} \<br>x_{2}x_{1} \quad x_{2}x_{2}\quad x_{2}x_{3}\quad x_{2}x_{4} \<br>x_{3}x_{1} \quad x_{3}x_{2}\quad x_{3}x_{3}\quad x_{3}x_{4} \<br>x_{4}x_{1} \quad x_{4}x_{2}\quad x_{4}x_{3}\quad x_{4}x_{4} \</p>
-<p>\sum_{i=1}^{n}{\sum_{j=1}^{n}{x_{i}x_{j}}}=\sum_{j=1}^{n}{\sum_{i=1}^{n}{x_{i}x_{j}}}</p>
-<p>v_{i} = \begin{bmatrix} v_{i,1} \ v_{i,2} \ v_{i,3} \ … \ v_{i,k} \end{bmatrix}</p>
-<p>y_{FM}=w_{0}+\sum_{i=1}^{n}{w_{i}x_{i}}+\begin{equation}\begin{split} \sum_{i=1}^{n-1} \sum_{j=i+1}^n  w_{ij}x_i x_j \end{split}\end{equation}</p>
-<p>y_{FM}=w_{0}+\sum_{i=1}^{n}{w_{i}x_{i}}+\begin{equation}\begin{split} \sum_{i=1}^{n-1} \sum_{j=i+1}^n \left \langle v_i,v_j \right \rangle x_i x_j \end{split}\end{equation}</p>
-<p>y_{FM}=w_{0}+\sum_{i=1}^{n}{w_{i}x_{i}}+\begin{equation}\begin{split}  \frac{1}{2} \sum_{f=1}^k \left[ \left ( \sum_{i=1}^n v_{i,f}x_i \right )^2 -\sum_{i=1}^n v_{i,f}^2 x_i^2 \right ] \end{split}\end{equation}</p>
-<p>&lt;v_{i}v_{j}&gt;=v_{i}v_{j}^{T}=\sum_{f=1}^{k}{v_{i,f}v_{j,f}}</p>
-<p>\begin{equation}<br>S<br>=\begin{bmatrix}<br>A  &amp;  B  &amp; \cdots\ &amp;C\<br>D  &amp;  E  &amp; \cdots\ &amp; F\<br> \vdots   &amp; \vdots &amp; \ddots  &amp; \vdots  \<br> G &amp; H  &amp; \cdots\ &amp; I\<br>\end{bmatrix}<br>\end{equation}</p>
-<p>\begin{equation}<br>V_{FM}<br>=\begin{bmatrix}<br>v_{11}  &amp;  v_{12}  &amp; \cdots\ &amp;v_{1k}\<br>v_{21}  &amp;  v_{22}  &amp; \cdots\ &amp; v_{2k}\<br> \vdots   &amp; \vdots &amp; \ddots  &amp; \vdots  \<br> v_{n1} &amp; v_{n2}  &amp; \cdots\ &amp; v_{nk}\<br>\end{bmatrix}<em>{n\times k}<br>=\begin{bmatrix}<br>v</em>{1}\<br>v_{2} \<br> \vdots  \<br> v_{n} \<br>\end{bmatrix}<br>\end{equation}</p>
-<p>\begin{equation}<br>W_{E}<br>=\begin{bmatrix}<br>w_{11}  &amp;  w_{12}  &amp; \cdots\ &amp;w_{1k}\<br>w_{21}  &amp;  w_{22}  &amp; \cdots\ &amp; w_{2k}\<br> \vdots   &amp; \vdots &amp; \ddots  &amp; \vdots  \<br> w_{n1} &amp; w_{n2}  &amp; \cdots\ &amp; w_{nk}\<br>\end{bmatrix}_{n\times k}<br>\end{equation}</p>
-<p>\begin{equation}<br>\begin{bmatrix}<br>w_{11}  &amp;  w_{12}  &amp; \cdots\ &amp;w_{1k}\<br>w_{21}  &amp;  w_{22}  &amp; \cdots\ &amp; w_{2k}\<br> \vdots   &amp; \vdots &amp; \ddots  &amp; \vdots  \<br> w_{n1} &amp; w_{n2}  &amp; \cdots\ &amp; w_{nk}\<br>\end{bmatrix}<br>\end{equation}</p>
-<p>\begin{equation}<br>f_{oh}<br>=\begin{bmatrix}<br>0 &amp;  1  &amp; 0\<br>\end{bmatrix}<br>\end{equation}</p>
-<p>\begin{equation}<br>e_{1}<br>=\begin{bmatrix}<br>w_{21} &amp;  w_{22}   &amp; \cdots\ &amp; w_{2k}\<br>\end{bmatrix}<br>\end{equation}</p>
-<p>\begin{equation}<br>S_{1}<br>=\begin{bmatrix}<br>0  \<br>1  \<br>0  \<br>\<br>0  \<br>1  \<br>0  \<br>0  \<br> \vdots \<br>0  \<br>0  \<br>0  \<br>0  \<br>1  \<br>\end{bmatrix}_{n\times 1}<br>\end{equation}</p>
-<p>\begin{equation}<br>E_{1}<br>=\begin{bmatrix}<br>w_{21}    &amp;<br>w_{22}    &amp;<br>\hdots   &amp;<br>w_{2k}    &amp;    &amp;<br>w_{51}    &amp;<br>w_{52}   &amp;<br>\hdots   &amp;<br>w_{5k}    &amp;  &amp;<br>\hdots   &amp; &amp;<br>w_{l1}    &amp;<br>w_{l2}   &amp;<br>\hdots   &amp;<br>w_{lk}    &amp;<br>\end{bmatrix}_{1\times (f\times k)}<br>\end{equation}</p>
-<p>Ent(D)=- {\displaystyle \sum_{k=1}^{K}{ p_{k}  \cdot  log_{2} p_{k}  } } </p>
-<p>Gain(D,a)=Ent(D)- {\displaystyle \sum_{v=1}^{V}{ \frac{ \left|  D^{v}  \right| }{ \left| D \right| } Ent( D^{v} )} } </p>
-<p>Gain(D,a)=Ent(D)- {\displaystyle \sum_{v=1}^{V}{ \frac{ \left|  D^{v}  \right| }{ \left| D \right| } Ent( D^{v} )} } </p>
-<p>GainRatio(D,T)= \frac{Gain(D,T)}{IV(T)} ,\ IV(T)=- {\displaystyle \sum_{v=1}^{V}{ \frac{ \left|  D^{v}  \right| }{ \left| D \right| }  log_{2} \frac{ \left|  D^{v}  \right| }{ \left| D \right| }} } </p>
+        <h3 id="1-FNN、PNN、wide-amp-deep等此前几种深度模型"><a href="#1-FNN、PNN、wide-amp-deep等此前几种深度模型" class="headerlink" title="1. FNN、PNN、wide&amp;deep等此前几种深度模型"></a>1. FNN、PNN、wide&amp;deep等此前几种深度模型</h3><p>见下图。 <img src="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png" alt="image.png">(1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。</p>
+<p>(2) PNN，见图中间。为了捕捉高阶特征间的组合作用，PNN在 embedding layer 和首层 hidden layer 间引入了 product layer。根据 product 类型的不同，有多种类型的 product layer。product 类型有内积、外积、内积和外积的混合。</p>
+<p>PNN的局限在于，外积由于是近似计算会丢失信息而比内积不可靠；内积更可靠，但是仍会计算量大。类似于 FNN，PNN忽略了低阶特征。</p>
+<p>(3) Wide&amp;Deep,见图右边。Google 提出的 Wide&amp;Deep可以同时刻画低阶和高阶特征，但是在wide 部分仍需要做人工特征工程。</p>
+<p>对比表格如下。</p>
+<p><img src="https://i.typcdn.com/fabwrite/PP/YJtwPEaq2NcXSbWf8Vyw.png" alt="image.png"></p>
+<h3 id="2-DeepFM"><a href="#2-DeepFM" class="headerlink" title="2. DeepFM"></a>2. DeepFM</h3><p>(1) DeepFM 类似于Wide&amp;Deep模型的结构，由 FM 和 DNN 两部分组成。FM描述低阶特征，而 DNN 描述高阶特征。不同于 Wide&amp;Deep，DeepFM 无需特征工程。</p>
+<p>(2) 不同于 Wide&amp;Deep，DeepFM 共享相同的输入和 embedding 向量，训练更高效。Wide&amp;Deep 模型中的 Wide 需要人工设计交互特征。</p>
+<p>结构如下图。</p>
+<p><img src="https://i.typcdn.com/fabwrite/ln/2UC_grQ0WrVchtYeyo5Q.png" alt="image.png"></p>
+<p>设DeepFM 的输入为{x,y}{x,y}，这里xx包括category 特征及 continuous 特征。category 特征已经过 one-hot 编码，所以xx 是高阶且稀疏的。</p>
+<p>DeepFM 包括 FM和 DNN两部分，最终输出也由这两部分联合训练。</p>
+<p>^y=sigmoid(yFM+yDNN)y^=sigmoid(yFM+yDNN)</p>
+<p>(1) FM 部分</p>
+<p><img src="https://i.typcdn.com/fabwrite/v3/uwbnfPoZvF-mpeLmLJ5w.png" alt="image.png"></p>
+<p>FM 部分的输出如下。</p>
+<p>yFM=⟨w,x⟩+d∑j1=1d∑j2=j1+1⟨Vi,Vj⟩xj1⋅xj2yFM=⟨w,x⟩+∑j1=1d∑j2=j1+1d⟨Vi,Vj⟩xj1⋅xj2</p>
+<p>(2) DNN 部分</p>
+<p><img src="https://i.typcdn.com/fabwrite/nb/xCU3tdi6NqX_npvMCKmQ.png" alt="image.png"></p>
+<p>DNN 部分主要是为了刻画高维特征。由于 CTR预估的输入是高维稀疏、category 和 continuous 混合的向量，在输入给第一层隐藏层前，需要增加一个 embedding层，以将上述向量压缩为低维、稠密的实向量。</p>
+<p>这里 的DNN模型有两个特点：(1) 不同长度的输入向量，其在隐藏层的长度是相同的。(2) FM 中的隐藏向量VV，现在作为将 one-hot 编码后的输入向量到embedding层的权重。</p>
+<p>如下图。</p>
+<p><img src="https://i.typcdn.com/fabwrite/6F/W0qE0eVQBGpxn9EUdxPA.png" alt="image.png"></p>
+<p>这里假设a(0)=(e1,e2,…em)a(0)=(e1,e2,…em)表示 embedding层的输出，那么a(0)a(0) 作为下一层 DNN隐藏层的输入，其前馈过程如下。</p>
+<p>a(l+1)=σ(W(l)a(l)+b(l))</p>
 
       
     </div>
@@ -356,6 +359,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Tensorflow-DeepFM/" rel="tag"># Tensorflow DeepFM</a>
+          
+        </div>
+      
 
       
       
@@ -365,8 +374,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/23/test/" rel="next" title="test">
-                <i class="fa fa-chevron-left"></i> test
+              <a href="/2018/10/24/当推荐系统遇上深度学习/" rel="next" title="当推荐系统遇上深度学习">
+                <i class="fa fa-chevron-left"></i> 当推荐系统遇上深度学习
               </a>
             
           </div>
@@ -435,8 +444,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -451,7 +469,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -459,6 +477,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
             
 
           </nav>
@@ -478,6 +505,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-FNN、PNN、wide-amp-deep等此前几种深度模型"><span class="nav-number">1.</span> <span class="nav-text">1. FNN、PNN、wide&amp;deep等此前几种深度模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-DeepFM"><span class="nav-number">2.</span> <span class="nav-text">2. DeepFM</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -635,9 +678,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/10/23/test2/';
-          this.page.identifier = '2018/10/23/test2/';
-          this.page.title = 'test2';
+          this.page.url = 'http://yoursite.com/2018/10/24/DeepFM炼丹记/';
+          this.page.identifier = '2018/10/24/DeepFM炼丹记/';
+          this.page.title = 'DeepFM炼丹记';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://gaolinjie.disqus.com/embed.js';
