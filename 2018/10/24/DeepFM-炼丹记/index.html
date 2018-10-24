@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://i.typcdn.com/fabwrite/v3/uwbnfPoZvF-mpeLmLJ5w.png">
 <meta property="og:image" content="https://i.typcdn.com/fabwrite/nb/xCU3tdi6NqX_npvMCKmQ.png">
 <meta property="og:image" content="https://i.typcdn.com/fabwrite/6F/W0qE0eVQBGpxn9EUdxPA.png">
-<meta property="og:updated_time" content="2018-10-24T08:29:36.484Z">
+<meta property="og:updated_time" content="2018-10-24T08:34:39.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DeepFM 炼丹记">
 <meta name="twitter:description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
@@ -327,7 +327,7 @@
 <p>(2) 不同于 Wide&amp;Deep，DeepFM 共享相同的输入和 embedding 向量，训练更高效。Wide&amp;Deep 模型中的 Wide 需要人工设计交互特征。</p>
 <p>结构如下图。</p>
 <p><img src="https://i.typcdn.com/fabwrite/ln/2UC_grQ0WrVchtYeyo5Q.png" alt="image.png"></p>
-<p>设DeepFM 的输入为{x,y}{x,y}，这里xx包括category 特征及 continuous 特征。category 特征已经过 one-hot 编码，所以xx 是高阶且稀疏的。</p>
+<p>设DeepFM 的输入为 ${x,y}$，这里xx包括category 特征及 continuous 特征。category 特征已经过 one-hot 编码，所以xx 是高阶且稀疏的。</p>
 <p>DeepFM 包括 FM和 DNN两部分，最终输出也由这两部分联合训练。</p>
 <p>$$<br>\hat{y}=sigmoid(y_{FM}+y_{DNN})<br>$$</p>
 <p>(1) FM 部分</p>
