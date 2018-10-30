@@ -1876,7 +1876,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4ef5ff;
+  background: #ff5214;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1914,7 +1914,7 @@ pre .javascript .function {
   color: #555;
 }
 .sidebar-nav li:hover {
-  color: #f5f5f5;
+  color: #999;
 }
 .page-post-detail .sidebar-nav-toc {
   padding: 0 5px;
@@ -1927,7 +1927,7 @@ pre .javascript .function {
   border-bottom-color: #555;
 }
 .sidebar-nav .sidebar-nav-active:hover {
-  color: #555;
+  color: #999;
 }
 .sidebar-panel {
   display: none;
