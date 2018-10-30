@@ -1714,13 +1714,13 @@ pre .javascript .function {
 }
 .sidebar {
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
   bottom: 0;
   width: 0;
   z-index: 1040;
-  box-shadow: inset 0 2px 6px #000;
-  background: #222;
+  background: #fff;
+  border-right: 1px solid #eceef1;
   -webkit-transform: translateZ(0);
 }
 .sidebar a {
@@ -1876,7 +1876,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #67af7c;
+  background: #a4f1d6;
 }
 .links-of-blogroll {
   font-size: 13px;
