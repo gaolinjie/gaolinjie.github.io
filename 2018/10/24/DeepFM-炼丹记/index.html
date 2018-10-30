@@ -6,144 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
 
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Tensorflow,DeepFM,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
-<meta name="keywords" content="Tensorflow,DeepFM">
-<meta property="og:type" content="article">
-<meta property="og:title" content="DeepFM 炼丹记">
-<meta property="og:url" content="https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/index.html">
-<meta property="og:site_name" content="gaolinjie">
-<meta property="og:description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/PP/YJtwPEaq2NcXSbWf8Vyw.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/ln/2UC_grQ0WrVchtYeyo5Q.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/v3/uwbnfPoZvF-mpeLmLJ5w.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/nb/xCU3tdi6NqX_npvMCKmQ.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/6F/W0qE0eVQBGpxn9EUdxPA.png">
-<meta property="og:updated_time" content="2018-10-24T09:04:02.702Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DeepFM 炼丹记">
-<meta name="twitter:description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
-<meta name="twitter:image" content="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/">
-
-
-
-
-
-  <title>DeepFM 炼丹记 | gaolinjie</title>
-  
-
-
-
-
-
-
-
-
-</head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
 
@@ -248,24 +111,96 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gaolinjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gaolinjie">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">DeepFM 炼丹记</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h3 id="1-FNN、PNN、wide-amp-deep等此前几种深度模型"><a href="#1-FNN、PNN、wide-amp-deep等此前几种深度模型" class="headerlink" title="1. FNN、PNN、wide&amp;deep等此前几种深度模型"></a>1. FNN、PNN、wide&amp;deep等此前几种深度模型</h3><p>见下图。 <img src="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png" alt="image.png">(1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。</p>
+          <h1 class="post-title" itemprop="name headline">DeepFM 炼丹记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-24T15:06:02+08:00">
+                2018-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/24/DeepFM-炼丹记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/24/DeepFM-炼丹记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-FNN、PNN、wide-amp-deep等此前几种深度模型"><a href="#1-FNN、PNN、wide-amp-deep等此前几种深度模型" class="headerlink" title="1. FNN、PNN、wide&amp;deep等此前几种深度模型"></a>1. FNN、PNN、wide&amp;deep等此前几种深度模型</h3><p>见下图。 <img src="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png" alt="image.png">(1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。</p>
 <p>(2) PNN，见图中间。为了捕捉高阶特征间的组合作用，PNN在 embedding layer 和首层 hidden layer 间引入了 product layer。根据 product 类型的不同，有多种类型的 product layer。product 类型有内积、外积、内积和外积的混合。</p>
 <p>PNN的局限在于，外积由于是近似计算会丢失信息而比内积不可靠；内积更可靠，但是仍会计算量大。类似于 FNN，PNN忽略了低阶特征。</p>
 <p>(3) Wide&amp;Deep,见图右边。Google 提出的 Wide&amp;Deep可以同时刻画低阶和高阶特征，但是在wide 部分仍需要做人工特征工程。</p>
@@ -291,15 +226,65 @@
 <p>这里假设 $a^{(0)}=(e_1,e_2,…e_m)$ 表示 embedding 层的输出，那么 $a^{(0)}$ 作为下一层 DNN 隐藏层的输入，其前馈过程如下。</p>
 <p>$$<br>a^{(l+1)}=  \sigma (W^{(l)}a^{(l)}+b^{(l)})<br>$$</p>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
+          
+            <a href="/tags/DeepFM/" rel="tag"># DeepFM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/24/当推荐系统遇上深度学习/" rel="next" title="当推荐系统遇上深度学习">
+                <i class="fa fa-chevron-left"></i> 当推荐系统遇上深度学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -431,42 +416,6 @@
       </div>
     </main>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">gaolinjie</span>
-
-  
-</div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
 
     
       <div class="back-to-top">
