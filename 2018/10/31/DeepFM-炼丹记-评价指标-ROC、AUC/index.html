@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="混淆矩阵 ROC 定义 纵轴：真正例率        横轴：假正例率       ROC计算过程如下：f2f27999-ae26-4fca-9536-9a529c90c1 1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;3)现在从上到下按照样本点的取值进行划分，">
+<meta name="description" content="混淆矩阵 ROC 定义 纵轴：真正例率        横轴：假正例率       ROC计算过程如下： 1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;3)现在从上到下按照样本点的取值进行划分，位于分界点上面的我们把它归为预测为正样本，位于分界点下面的归为负样本">
 <meta name="keywords" content="ROC,AUC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DeepFM 炼丹记 - 评价指标 ROC、AUC">
 <meta property="og:url" content="https://gaolinjie.github.io/2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/index.html">
 <meta property="og:site_name" content="gaolinjie">
-<meta property="og:description" content="混淆矩阵 ROC 定义 纵轴：真正例率        横轴：假正例率       ROC计算过程如下：f2f27999-ae26-4fca-9536-9a529c90c1 1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;3)现在从上到下按照样本点的取值进行划分，">
+<meta property="og:description" content="混淆矩阵 ROC 定义 纵轴：真正例率        横轴：假正例率       ROC计算过程如下： 1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;3)现在从上到下按照样本点的取值进行划分，位于分界点上面的我们把它归为预测为正样本，位于分界点下面的归为负样本">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-31T02:25:47.370Z">
+<meta property="og:image" content="https://gaolinjie.github.io/2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/media/8876DF01-2E0C-46EE-B915-67FD1D9C0B33.gif">
+<meta property="og:updated_time" content="2018-10-31T02:30:50.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DeepFM 炼丹记 - 评价指标 ROC、AUC">
-<meta name="twitter:description" content="混淆矩阵 ROC 定义 纵轴：真正例率        横轴：假正例率       ROC计算过程如下：f2f27999-ae26-4fca-9536-9a529c90c1 1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;3)现在从上到下按照样本点的取值进行划分，">
+<meta name="twitter:description" content="混淆矩阵 ROC 定义 纵轴：真正例率        横轴：假正例率       ROC计算过程如下： 1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;3)现在从上到下按照样本点的取值进行划分，位于分界点上面的我们把它归为预测为正样本，位于分界点下面的归为负样本">
+<meta name="twitter:image" content="https://gaolinjie.github.io/2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/media/8876DF01-2E0C-46EE-B915-67FD1D9C0B33.gif">
 
 
 
@@ -334,7 +336,7 @@
 <p>ROC 定义</p>
 <p>纵轴：真正例率       </p>
 <p>横轴：假正例率      </p>
-<p>ROC计算过程如下：<br><a href="media/f2f27999-ae26-4fca-9536-9a529c90c1c2.svg">f2f27999-ae26-4fca-9536-9a529c90c1</a></p>
+<p>ROC计算过程如下：<br><img src="media/8876DF01-2E0C-46EE-B915-67FD1D9C0B33.gif" alt="8876DF01-2E0C-46EE-B915-67FD1D9C0B33"></p>
 <p>1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;<br>2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;<br>3)现在从上到下按照样本点的取值进行划分，位于分界点上面的我们把它归为预测为正样本，位于分界点下面的归为负样本;<br>4)分别计算出此时的TPR和FPR，然后在图中绘制（FPR, TPR）点。</p>
 <p>AUC 定义</p>
 <p>AUC（area under the curve）就是ROC曲线下方的面积，如下图所示，阴影部分面积即为AUC的值：</p>
