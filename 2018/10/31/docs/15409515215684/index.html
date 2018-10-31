@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Tensorflow,DeepFM,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,25 +79,17 @@
 
 
 
-<meta name="description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
-<meta name="keywords" content="Tensorflow,DeepFM">
+<meta name="description" content="欢迎使用 MWebMWeb 是专业的 Markdown 写作、记笔记、静态博客生成软件，目前已支持 Mac，iPad 和 iPhone。MWeb 有以下特色： 软件本身： 使用原生的 macOS 技术打造，追求与系统的完美结合。 原则上，首先是追求界面简洁和高性能，然后才是强大易用，功能全面。  Markdown 语法： 使用 Github Flavored Markdown 语法，简称 GFM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DeepFM 炼丹记">
-<meta property="og:url" content="https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/index.html">
+<meta property="og:title" content="gaolinjie">
+<meta property="og:url" content="https://gaolinjie.github.io/2018/10/31/docs/15409515215684/index.html">
 <meta property="og:site_name" content="gaolinjie">
-<meta property="og:description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
+<meta property="og:description" content="欢迎使用 MWebMWeb 是专业的 Markdown 写作、记笔记、静态博客生成软件，目前已支持 Mac，iPad 和 iPhone。MWeb 有以下特色： 软件本身： 使用原生的 macOS 技术打造，追求与系统的完美结合。 原则上，首先是追求界面简洁和高性能，然后才是强大易用，功能全面。  Markdown 语法： 使用 Github Flavored Markdown 语法，简称 GFM">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/PP/YJtwPEaq2NcXSbWf8Vyw.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/ln/2UC_grQ0WrVchtYeyo5Q.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/v3/uwbnfPoZvF-mpeLmLJ5w.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/nb/xCU3tdi6NqX_npvMCKmQ.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/6F/W0qE0eVQBGpxn9EUdxPA.png">
-<meta property="og:updated_time" content="2018-10-24T09:04:02.702Z">
+<meta property="og:updated_time" content="2018-10-31T02:05:21.569Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DeepFM 炼丹记">
-<meta name="twitter:description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
-<meta name="twitter:image" content="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png">
+<meta name="twitter:title" content="gaolinjie">
+<meta name="twitter:description" content="欢迎使用 MWebMWeb 是专业的 Markdown 写作、记笔记、静态博客生成软件，目前已支持 Mac，iPad 和 iPhone。MWeb 有以下特色： 软件本身： 使用原生的 macOS 技术打造，追求与系统的完美结合。 原则上，首先是追求界面简洁和高性能，然后才是强大易用，功能全面。  Markdown 语法： 使用 Github Flavored Markdown 语法，简称 GFM">
 
 
 
@@ -127,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/">
+  <link rel="canonical" href="https://gaolinjie.github.io/2018/10/31/docs/15409515215684/">
 
 
 
 
 
-  <title>DeepFM 炼丹记 | gaolinjie</title>
+  <title> | gaolinjie</title>
   
 
 
@@ -260,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/">
+    <link itemprop="mainEntityOfPage" href="https://gaolinjie.github.io/2018/10/31/docs/15409515215684/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="gaolinjie">
@@ -277,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">DeepFM 炼丹记</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -289,8 +281,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-24T15:06:02+08:00">
-                2018-10-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-31T10:05:21+08:00">
+                2018-10-31
               </time>
             
 
@@ -308,8 +300,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/24/DeepFM-炼丹记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/24/DeepFM-炼丹记/" itemprop="commentCount"></span>
+                <a href="/2018/10/31/docs/15409515215684/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/31/docs/15409515215684/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -337,31 +329,41 @@
       
 
       
-        <h3 id="1-FNN、PNN、wide-amp-deep等此前几种深度模型"><a href="#1-FNN、PNN、wide-amp-deep等此前几种深度模型" class="headerlink" title="1. FNN、PNN、wide&amp;deep等此前几种深度模型"></a>1. FNN、PNN、wide&amp;deep等此前几种深度模型</h3><p>见下图。 <img src="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png" alt="image.png">(1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。</p>
-<p>(2) PNN，见图中间。为了捕捉高阶特征间的组合作用，PNN在 embedding layer 和首层 hidden layer 间引入了 product layer。根据 product 类型的不同，有多种类型的 product layer。product 类型有内积、外积、内积和外积的混合。</p>
-<p>PNN的局限在于，外积由于是近似计算会丢失信息而比内积不可靠；内积更可靠，但是仍会计算量大。类似于 FNN，PNN忽略了低阶特征。</p>
-<p>(3) Wide&amp;Deep,见图右边。Google 提出的 Wide&amp;Deep可以同时刻画低阶和高阶特征，但是在wide 部分仍需要做人工特征工程。</p>
-<p>对比表格如下。</p>
-<p><img src="https://i.typcdn.com/fabwrite/PP/YJtwPEaq2NcXSbWf8Vyw.png" alt="image.png"></p>
-<h3 id="2-DeepFM"><a href="#2-DeepFM" class="headerlink" title="2. DeepFM"></a>2. DeepFM</h3><p>(1) DeepFM 类似于Wide&amp;Deep模型的结构，由 FM 和 DNN 两部分组成。FM描述低阶特征，而 DNN 描述高阶特征。不同于 Wide&amp;Deep，DeepFM 无需特征工程。</p>
-<p>(2) 不同于 Wide&amp;Deep，DeepFM 共享相同的输入和 embedding 向量，训练更高效。Wide&amp;Deep 模型中的 Wide 需要人工设计交互特征。</p>
-<p>结构如下图。</p>
-<p><img src="https://i.typcdn.com/fabwrite/ln/2UC_grQ0WrVchtYeyo5Q.png" alt="image.png"></p>
-<p>设DeepFM 的输入为 ${x,y}$，这里xx包括category 特征及 continuous 特征。category 特征已经过 one-hot 编码，所以xx 是高阶且稀疏的。</p>
-<p>DeepFM 包括 FM和 DNN两部分，最终输出也由这两部分联合训练。</p>
-<p>$$<br>\hat{y}=sigmoid(y_{FM}+y_{DNN})<br>$$</p>
-<p>(1) FM 部分</p>
-<p><img src="https://i.typcdn.com/fabwrite/v3/uwbnfPoZvF-mpeLmLJ5w.png" alt="image.png"></p>
-<p>FM 部分的输出如下。</p>
-<p>$$<br>y_{FM}=  \langle w,x \rangle+ \sum_{j_1=1}^d \sum_{j_2=j_1+1}^d \langle V_i,V_j \rangle x_{j_1} \cdot x_{j_2}<br>$$</p>
-<p>(2) DNN 部分</p>
-<p><img src="https://i.typcdn.com/fabwrite/nb/xCU3tdi6NqX_npvMCKmQ.png" alt="image.png"></p>
-<p>DNN 部分主要是为了刻画高维特征。由于 CTR预估的输入是高维稀疏、category 和 continuous 混合的向量，在输入给第一层隐藏层前，需要增加一个 embedding层，以将上述向量压缩为低维、稠密的实向量。</p>
-<p>这里 的DNN模型有两个特点：(1) 不同长度的输入向量，其在隐藏层的长度是相同的。(2) FM 中的隐藏向量VV，现在作为将 one-hot 编码后的输入向量到embedding层的权重。</p>
-<p>如下图。</p>
-<p><img src="https://i.typcdn.com/fabwrite/6F/W0qE0eVQBGpxn9EUdxPA.png" alt="image.png"></p>
-<p>这里假设 $a^{(0)}=(e_1,e_2,…e_m)$ 表示 embedding 层的输出，那么 $a^{(0)}$ 作为下一层 DNN 隐藏层的输入，其前馈过程如下。</p>
-<p>$$<br>a^{(l+1)}=  \sigma (W^{(l)}a^{(l)}+b^{(l)})<br>$$</p>
+        <h1 id="欢迎使用-MWeb"><a href="#欢迎使用-MWeb" class="headerlink" title="欢迎使用 MWeb"></a>欢迎使用 MWeb</h1><p>MWeb 是专业的 Markdown 写作、记笔记、静态博客生成软件，目前已支持 Mac，iPad 和 iPhone。MWeb 有以下特色：</p>
+<h2 id="软件本身："><a href="#软件本身：" class="headerlink" title="软件本身："></a>软件本身：</h2><ul>
+<li>使用原生的 macOS 技术打造，追求与系统的完美结合。</li>
+<li>原则上，首先是追求界面简洁和高性能，然后才是强大易用，功能全面。</li>
+</ul>
+<h2 id="Markdown-语法："><a href="#Markdown-语法：" class="headerlink" title="Markdown 语法："></a>Markdown 语法：</h2><ul>
+<li>使用 Github Flavored Markdown 语法，简称 GFM 语法。</li>
+<li>支持表格、TOC、LaTeX、代码块、任务列表、脚注等。</li>
+<li>画图库支持 mermaid, viz, echarts, plantuml, sequence, flow。</li>
+</ul>
+<h2 id="Markdown-辅助："><a href="#Markdown-辅助：" class="headerlink" title="Markdown 辅助："></a>Markdown 辅助：</h2><ul>
+<li>支持截图并粘贴、复制并粘贴、拖拽等方式插入图片并直接显示在编辑器内。</li>
+<li>在兼容 Markdown 语法的情况下支持设置图片宽度。</li>
+<li>好用的表格插入和 LaTeX 书写辅助。</li>
+</ul>
+<h2 id="Markdown-输出："><a href="#Markdown-输出：" class="headerlink" title="Markdown 输出："></a>Markdown 输出：</h2><ul>
+<li>支持导出为图片、HTML、Epub、PDF、RTF、Docx。</li>
+<li>支持发布到 Wordrpess、支持 Metaweblog API 协议的服务、Wordpress.com、印象笔记（Evernote）、Blogger、Medium、Tumblr。</li>
+<li>图片上传服务（图床）支持 Google Photos、Imgur、七牛云、又拍云和自定义的图床服务。</li>
+</ul>
+<h2 id="Markdown-笔记："><a href="#Markdown-笔记：" class="headerlink" title="Markdown 笔记："></a>Markdown 笔记：</h2><ul>
+<li>强大的文档库支持分类树和标签管理文档，文档可归类于多个分类，可以把分类整个导出为 Epub、PDF 和生成静态网站。非常合适用于笔记、个人知识收集、管理和输出。</li>
+<li>快速笔记：随意增加笔记及图片等素材，支持以天为单位把增加的素材组合在一个文档内，方便整理及记录历史收集情况。</li>
+<li>快速搜索：目前已支持全局快捷键调出搜索。</li>
+</ul>
+<h2 id="外部-Markdown-文档："><a href="#外部-Markdown-文档：" class="headerlink" title="外部 Markdown 文档："></a>外部 Markdown 文档：</h2><ul>
+<li>外部 Markdown 文档使用外部模式管理。外部模式使用目录树的方式编辑和管理你的 markdown 文档，还能很好的支持 gitbook、JekyII、hexo 等等编辑和图片插入。</li>
+</ul>
+<h2 id="MWeb-文档："><a href="#MWeb-文档：" class="headerlink" title="MWeb 文档："></a>MWeb 文档：</h2><p>如果要更详细了解 MWeb，建议你一定要去看一下官网的帮助文档，网址为：<a href="https://zh.mweb.im/help.html" target="_blank" rel="noopener">https://zh.mweb.im/help.html</a>。我们建议在使用文档库之前，一定要阅读一下  <a href="https://zh.mweb.im/mweb-library.html" target="_blank" rel="noopener">MWeb 文档库详细介绍</a> 这篇文章，以便更好的使用文档库。</p>
+<h2 id="帮助我们改进-MWeb"><a href="#帮助我们改进-MWeb" class="headerlink" title="帮助我们改进 MWeb"></a>帮助我们改进 MWeb</h2><p>如果你喜欢 MWeb，想让它变得更好，你可以：</p>
+<ol>
+<li>推荐 MWeb，让更多的人知道。</li>
+<li>给我们发反馈和建议：<a href="mailto:&#99;&#111;&#x64;&#x65;&#x72;&#x66;&#x6f;&#114;&#x61;&#x72;&#116;&#x2b;&#x32;&#51;&#51;&#51;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;" target="_blank" rel="noopener">&#99;&#111;&#x64;&#x65;&#x72;&#x66;&#x6f;&#114;&#x61;&#x72;&#116;&#x2b;&#x32;&#51;&#51;&#51;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;</a></li>
+<li>在 Mac App Store 上评价 （如果是在 MAS 上购买的话）。</li>
+</ol>
 
       
     </div>
@@ -377,14 +379,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
-          
-            <a href="/tags/DeepFM/" rel="tag"># DeepFM</a>
-          
-        </div>
-      
 
       
       
@@ -394,8 +388,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/24/当推荐系统遇上深度学习/" rel="next" title="当推荐系统遇上深度学习">
-                <i class="fa fa-chevron-left"></i> 当推荐系统遇上深度学习
+              <a href="/2018/10/24/DeepFM-炼丹记/" rel="next" title="DeepFM 炼丹记">
+                <i class="fa fa-chevron-left"></i> DeepFM 炼丹记
               </a>
             
           </div>
@@ -404,8 +398,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/31/docs/15409515215684/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/" rel="prev" title="DeepFM 炼丹记 - 评价指标 ROC、AUC">
+                DeepFM 炼丹记 - 评价指标 ROC、AUC <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -539,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-FNN、PNN、wide-amp-deep等此前几种深度模型"><span class="nav-number">1.</span> <span class="nav-text">1. FNN、PNN、wide&amp;deep等此前几种深度模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-DeepFM"><span class="nav-number">2.</span> <span class="nav-text">2. DeepFM</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#欢迎使用-MWeb"><span class="nav-number">1.</span> <span class="nav-text">欢迎使用 MWeb</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#软件本身："><span class="nav-number">1.1.</span> <span class="nav-text">软件本身：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown-语法："><span class="nav-number">1.2.</span> <span class="nav-text">Markdown 语法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown-辅助："><span class="nav-number">1.3.</span> <span class="nav-text">Markdown 辅助：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown-输出："><span class="nav-number">1.4.</span> <span class="nav-text">Markdown 输出：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown-笔记："><span class="nav-number">1.5.</span> <span class="nav-text">Markdown 笔记：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部-Markdown-文档："><span class="nav-number">1.6.</span> <span class="nav-text">外部 Markdown 文档：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MWeb-文档："><span class="nav-number">1.7.</span> <span class="nav-text">MWeb 文档：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助我们改进-MWeb"><span class="nav-number">1.8.</span> <span class="nav-text">帮助我们改进 MWeb</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -702,9 +696,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/';
-          this.page.identifier = '2018/10/24/DeepFM-炼丹记/';
-          this.page.title = 'DeepFM 炼丹记';
+          this.page.url = 'https://gaolinjie.github.io/2018/10/31/docs/15409515215684/';
+          this.page.identifier = '2018/10/31/docs/15409515215684/';
+          this.page.title = '';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://gaolinjie.disqus.com/embed.js';

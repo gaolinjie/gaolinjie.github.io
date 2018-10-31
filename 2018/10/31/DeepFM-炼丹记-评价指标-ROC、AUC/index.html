@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Tensorflow,DeepFM,">
+  <meta name="keywords" content="ROC,AUC,">
 
 
 
@@ -79,25 +79,18 @@
 
 
 
-<meta name="description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
-<meta name="keywords" content="Tensorflow,DeepFM">
+<meta name="description" content="混淆矩阵 ROC 定义 纵轴：真正例率        横轴：假正例率       ROC计算过程如下：f2f27999-ae26-4fca-9536-9a529c90c1 1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;3)现在从上到下按照样本点的取值进行划分，">
+<meta name="keywords" content="ROC,AUC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DeepFM 炼丹记">
-<meta property="og:url" content="https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/index.html">
+<meta property="og:title" content="DeepFM 炼丹记 - 评价指标 ROC、AUC">
+<meta property="og:url" content="https://gaolinjie.github.io/2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/index.html">
 <meta property="og:site_name" content="gaolinjie">
-<meta property="og:description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
+<meta property="og:description" content="混淆矩阵 ROC 定义 纵轴：真正例率        横轴：假正例率       ROC计算过程如下：f2f27999-ae26-4fca-9536-9a529c90c1 1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;3)现在从上到下按照样本点的取值进行划分，">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/PP/YJtwPEaq2NcXSbWf8Vyw.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/ln/2UC_grQ0WrVchtYeyo5Q.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/v3/uwbnfPoZvF-mpeLmLJ5w.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/nb/xCU3tdi6NqX_npvMCKmQ.png">
-<meta property="og:image" content="https://i.typcdn.com/fabwrite/6F/W0qE0eVQBGpxn9EUdxPA.png">
-<meta property="og:updated_time" content="2018-10-24T09:04:02.702Z">
+<meta property="og:updated_time" content="2018-10-31T02:25:47.370Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DeepFM 炼丹记">
-<meta name="twitter:description" content="1. FNN、PNN、wide&amp;amp;deep等此前几种深度模型见下图。 (1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。 (2) PNN，见图中间。为了捕捉高">
-<meta name="twitter:image" content="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png">
+<meta name="twitter:title" content="DeepFM 炼丹记 - 评价指标 ROC、AUC">
+<meta name="twitter:description" content="混淆矩阵 ROC 定义 纵轴：真正例率        横轴：假正例率       ROC计算过程如下：f2f27999-ae26-4fca-9536-9a529c90c1 1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;3)现在从上到下按照样本点的取值进行划分，">
 
 
 
@@ -127,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/">
+  <link rel="canonical" href="https://gaolinjie.github.io/2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/">
 
 
 
 
 
-  <title>DeepFM 炼丹记 | gaolinjie</title>
+  <title>DeepFM 炼丹记 - 评价指标 ROC、AUC | gaolinjie</title>
   
 
 
@@ -260,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/">
+    <link itemprop="mainEntityOfPage" href="https://gaolinjie.github.io/2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="gaolinjie">
@@ -277,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">DeepFM 炼丹记</h1>
+          <h1 class="post-title" itemprop="name headline">DeepFM 炼丹记 - 评价指标 ROC、AUC</h1>
         
 
         <div class="post-meta">
@@ -289,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-24T15:06:02+08:00">
-                2018-10-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-31T10:13:46+08:00">
+                2018-10-31
               </time>
             
 
@@ -308,8 +301,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/24/DeepFM-炼丹记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/24/DeepFM-炼丹记/" itemprop="commentCount"></span>
+                <a href="/2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -337,31 +330,36 @@
       
 
       
-        <h3 id="1-FNN、PNN、wide-amp-deep等此前几种深度模型"><a href="#1-FNN、PNN、wide-amp-deep等此前几种深度模型" class="headerlink" title="1. FNN、PNN、wide&amp;deep等此前几种深度模型"></a>1. FNN、PNN、wide&amp;deep等此前几种深度模型</h3><p>见下图。 <img src="https://i.typcdn.com/fabwrite/tL/ZL3r1WhXIB1N9SyL414g.png" alt="image.png">(1) FNN，见图左边。用 FM 预训练embedding layer，然后DNN训练。作者认为有两点局限：embedding layer 的参数会受到 FM 的影响；预训练计算量大，效率问题。同时 FNN仅能捕捉高阶特征，相比之下，DeepFM 无需预训练，且能捕捉高阶和低阶特征。</p>
-<p>(2) PNN，见图中间。为了捕捉高阶特征间的组合作用，PNN在 embedding layer 和首层 hidden layer 间引入了 product layer。根据 product 类型的不同，有多种类型的 product layer。product 类型有内积、外积、内积和外积的混合。</p>
-<p>PNN的局限在于，外积由于是近似计算会丢失信息而比内积不可靠；内积更可靠，但是仍会计算量大。类似于 FNN，PNN忽略了低阶特征。</p>
-<p>(3) Wide&amp;Deep,见图右边。Google 提出的 Wide&amp;Deep可以同时刻画低阶和高阶特征，但是在wide 部分仍需要做人工特征工程。</p>
-<p>对比表格如下。</p>
-<p><img src="https://i.typcdn.com/fabwrite/PP/YJtwPEaq2NcXSbWf8Vyw.png" alt="image.png"></p>
-<h3 id="2-DeepFM"><a href="#2-DeepFM" class="headerlink" title="2. DeepFM"></a>2. DeepFM</h3><p>(1) DeepFM 类似于Wide&amp;Deep模型的结构，由 FM 和 DNN 两部分组成。FM描述低阶特征，而 DNN 描述高阶特征。不同于 Wide&amp;Deep，DeepFM 无需特征工程。</p>
-<p>(2) 不同于 Wide&amp;Deep，DeepFM 共享相同的输入和 embedding 向量，训练更高效。Wide&amp;Deep 模型中的 Wide 需要人工设计交互特征。</p>
-<p>结构如下图。</p>
-<p><img src="https://i.typcdn.com/fabwrite/ln/2UC_grQ0WrVchtYeyo5Q.png" alt="image.png"></p>
-<p>设DeepFM 的输入为 ${x,y}$，这里xx包括category 特征及 continuous 特征。category 特征已经过 one-hot 编码，所以xx 是高阶且稀疏的。</p>
-<p>DeepFM 包括 FM和 DNN两部分，最终输出也由这两部分联合训练。</p>
-<p>$$<br>\hat{y}=sigmoid(y_{FM}+y_{DNN})<br>$$</p>
-<p>(1) FM 部分</p>
-<p><img src="https://i.typcdn.com/fabwrite/v3/uwbnfPoZvF-mpeLmLJ5w.png" alt="image.png"></p>
-<p>FM 部分的输出如下。</p>
-<p>$$<br>y_{FM}=  \langle w,x \rangle+ \sum_{j_1=1}^d \sum_{j_2=j_1+1}^d \langle V_i,V_j \rangle x_{j_1} \cdot x_{j_2}<br>$$</p>
-<p>(2) DNN 部分</p>
-<p><img src="https://i.typcdn.com/fabwrite/nb/xCU3tdi6NqX_npvMCKmQ.png" alt="image.png"></p>
-<p>DNN 部分主要是为了刻画高维特征。由于 CTR预估的输入是高维稀疏、category 和 continuous 混合的向量，在输入给第一层隐藏层前，需要增加一个 embedding层，以将上述向量压缩为低维、稠密的实向量。</p>
-<p>这里 的DNN模型有两个特点：(1) 不同长度的输入向量，其在隐藏层的长度是相同的。(2) FM 中的隐藏向量VV，现在作为将 one-hot 编码后的输入向量到embedding层的权重。</p>
-<p>如下图。</p>
-<p><img src="https://i.typcdn.com/fabwrite/6F/W0qE0eVQBGpxn9EUdxPA.png" alt="image.png"></p>
-<p>这里假设 $a^{(0)}=(e_1,e_2,…e_m)$ 表示 embedding 层的输出，那么 $a^{(0)}$ 作为下一层 DNN 隐藏层的输入，其前馈过程如下。</p>
-<p>$$<br>a^{(l+1)}=  \sigma (W^{(l)}a^{(l)}+b^{(l)})<br>$$</p>
+        <p>混淆矩阵</p>
+<p>ROC 定义</p>
+<p>纵轴：真正例率       </p>
+<p>横轴：假正例率      </p>
+<p>ROC计算过程如下：<br><a href="media/f2f27999-ae26-4fca-9536-9a529c90c1c2.svg">f2f27999-ae26-4fca-9536-9a529c90c1</a></p>
+<p>1)首先每个样本都需要有一个label值，并且还需要一个预测的score值（取值0到1）;<br>2)然后按这个score对样本由大到小进行排序，假设这些数据位于表格中的一列，从上到下依次降序;<br>3)现在从上到下按照样本点的取值进行划分，位于分界点上面的我们把它归为预测为正样本，位于分界点下面的归为负样本;<br>4)分别计算出此时的TPR和FPR，然后在图中绘制（FPR, TPR）点。</p>
+<p>AUC 定义</p>
+<p>AUC（area under the curve）就是ROC曲线下方的面积，如下图所示，阴影部分面积即为AUC的值：</p>
+<p>AUC还有另一种解释，就是测试任意给一个正类样本和一个负类样本，正类样本的score有多大的概率大于负类样本的score。</p>
+<p>AUC量化了ROC曲线表达的分类能力。这种分类能力是与概率、阈值紧密相关的，分类能力越好（AUC越大），那么输出概率越合理，排序的结果越合理。<br>在CTR预估中，我们不仅希望分类器给出是否点击的分类信息，更需要分类器给出准确的概率值，作为排序的依据。所以，这里的AUC就直观地反映了CTR的准确性（也就是CTR的排序能力）。</p>
+<p>一般来说，如果ROC是光滑的，那么基本可以判断没有太大的overfitting，AUC面积越大一般认为模型越好。</p>
+<p>三条ROC曲线，A模型 &gt; B &gt; C</p>
+<p>两条ROC曲线相交于一点，AUC值几乎一样：当需要高Sensitivity时，模型A比B好；当需要高Speciticity时，模型B比A好；</p>
+<p>Sensitivity/TPR = TP / (TP + FN)   敏感度 = 真正例率 = 越高，“漏检”(FN)越小</p>
+<p>Specificity/TNR = TN / (TN + FP)  特异度 = 真负例率 = 越高，“误检”(FP)越小</p>
+<p>AUC能拿来干什么</p>
+<p>AUC是现在分类模型，特别是二分类模型使用的主要离线评测指标之一。相比于准确率、召回率、F1等指标，AUC有一个独特的优势，就是不关注具体得分，只关注排序结果，这使得它特别适用于排序问题的效果评估，例如推荐排序的评估。</p>
+<p>从作者有限的经历来说，AUC最大的应用应该就是点击率预估（CTR）的离线评估。CTR的离线评估在公司的技术流程中占有很重要的地位，一般来说，ABTest和转全观察的资源成本比较大，所以，一个合适的离线评价可以节省很多时间、人力、资源成本。那么，为什么AUC可以用来评价CTR呢？我们首先要清楚两个事情： </p>
+<ol>
+<li>CTR是把分类器输出的概率当做是点击率的预估值，如业界常用的LR模型，利用sigmoid函数将特征输入与概率输出联系起来，这个输出的概率就是点击率的预估值。内容的召回往往是根据CTR的排序而决定的。 </li>
+<li>AUC量化了ROC曲线表达的分类能力。这种分类能力是与概率、阈值紧密相关的，分类能力越好（AUC越大），那么输出概率越合理，排序的结果越合理。<br>我们不仅希望分类器给出是否点击的分类信息，更需要分类器给出准确的概率值，作为排序的依据。所以，这里的AUC就直观地反映了CTR的准确性（也就是CTR的排序能力）</li>
+</ol>
+<p>AUC 指标的不足之处有两点，<br>一是只反映了模型的整体性能，看不出在不同点击率区间上的误差情况；<br>二是只反映了排序能力，没有反映预测精度；简单说，如果对一个模型的点击率统一乘以 2，AUC 不会变化，但显然模型预测的值和真实值之间的 offset 扩大了。</p>
+<p>总结</p>
+<ol>
+<li>ROC曲线反映了分类器的分类能力，结合考虑了分类器输出概率的准确性</li>
+<li>AUC量化了ROC曲线的分类能力，越大分类效果越好，输出概率越合理</li>
+<li>AUC常用作CTR的离线评价，AUC越大，CTR的排序能力越强</li>
+</ol>
+<p>参考来源：<br><a href="https://www.plob.org/article/12476.html" target="_blank" rel="noopener">https://www.plob.org/article/12476.html</a><br><a href="https://www.jianshu.com/p/7919ef304b19" target="_blank" rel="noopener">https://www.jianshu.com/p/7919ef304b19</a><br><a href="https://blog.csdn.net/dgyuanshaofeng/article/details/78686117" target="_blank" rel="noopener">https://blog.csdn.net/dgyuanshaofeng/article/details/78686117</a><br><a href="http://lps-683.iteye.com/blog/2387643" target="_blank" rel="noopener">http://lps-683.iteye.com/blog/2387643</a><br><a href="https://juejin.im/entry/5b13960a6fb9a01e6949a96e" target="_blank" rel="noopener">https://juejin.im/entry/5b13960a6fb9a01e6949a96e</a><br><a href="http://jhuangpku.github.io/aucshang-sheng-ctryi-ding-shang-sheng-yao.html" target="_blank" rel="noopener">http://jhuangpku.github.io/aucshang-sheng-ctryi-ding-shang-sheng-yao.html</a>  【AUC上升CTR一定上升么】<br><a href="https://zhuanlan.zhihu.com/p/24217322" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24217322</a> 【多高的AUC才算高？】</p>
 
       
     </div>
@@ -379,9 +377,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
+            <a href="/tags/ROC/" rel="tag"># ROC</a>
           
-            <a href="/tags/DeepFM/" rel="tag"># DeepFM</a>
+            <a href="/tags/AUC/" rel="tag"># AUC</a>
           
         </div>
       
@@ -394,8 +392,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/24/当推荐系统遇上深度学习/" rel="next" title="当推荐系统遇上深度学习">
-                <i class="fa fa-chevron-left"></i> 当推荐系统遇上深度学习
+              <a href="/2018/10/31/docs/15409515215684/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -403,10 +401,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/31/docs/15409515215684/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -468,17 +462,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -529,22 +514,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-FNN、PNN、wide-amp-deep等此前几种深度模型"><span class="nav-number">1.</span> <span class="nav-text">1. FNN、PNN、wide&amp;deep等此前几种深度模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-DeepFM"><span class="nav-number">2.</span> <span class="nav-text">2. DeepFM</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -702,9 +671,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://gaolinjie.github.io/2018/10/24/DeepFM-炼丹记/';
-          this.page.identifier = '2018/10/24/DeepFM-炼丹记/';
-          this.page.title = 'DeepFM 炼丹记';
+          this.page.url = 'https://gaolinjie.github.io/2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/';
+          this.page.identifier = '2018/10/31/DeepFM-炼丹记-评价指标-ROC、AUC/';
+          this.page.title = 'DeepFM 炼丹记 - 评价指标 ROC、AUC';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://gaolinjie.disqus.com/embed.js';
